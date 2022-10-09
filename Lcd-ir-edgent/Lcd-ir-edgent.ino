@@ -47,9 +47,18 @@ BLYNK_WRITE(V0)
   }
 
 }
+BLYNK_WRITE(V3)
+{
+  float amount = param.asFloat();
+  amount /=100;
+  lcd.setCursor(0,0);
+  lcd.print("AMOUNT:");
+  lcd.print(amount);
+}
 BLYNK_CONNECTED()
 {
   Blynk.syncVirtual(V0);
+  Blynk.syncVirtual(V3);
 
 }
 void setup()
