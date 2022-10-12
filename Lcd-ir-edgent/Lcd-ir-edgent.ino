@@ -12,8 +12,10 @@
 
 #define APP_DEBUG
 int val = -1;
-int irPin = 14;
+//int irPin = 14;
+int speakerPin = 14;
 char auth[] = BLYNK_AUTH_TOKEN;
+float amount = 0;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
@@ -32,6 +34,7 @@ char pass[] = "12345678sa";
 #include <Wire.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+BlynkTimer timer;
 
 BLYNK_WRITE(V0)
 {
@@ -49,11 +52,26 @@ BLYNK_WRITE(V0)
 }
 BLYNK_WRITE(V3)
 {
-  float amount = param.asFloat();
+  amount = param.asFloat();
   amount /=100;
   lcd.setCursor(0,0);
   lcd.print("AMOUNT:");
   lcd.print(amount);
+
+  digitalWrite(speakerPin, HIGH);  // Set pin high
+  timer.setTimeout(500L, speakerOFF);  // Run ActionOFF function in 2.5 seconds
+  timer.setTimeout(150000L,resetAmount); //reset amount after 2.5mins
+}
+void speakerOFF(){
+  digitalWrite(speakerPin,LOW);
+  
+}
+void resetAmount(){
+  amount =0;
+  lcd.setCursor(0,0);
+  lcd.print("AMOUNT:");
+  lcd.print(amount);
+  Blynk.virtualWrite(V3,amount);
 }
 BLYNK_CONNECTED()
 {
@@ -65,7 +83,7 @@ void setup()
 {
   Serial.begin(115200);
   delay(100);
-  pinMode(irPin, INPUT);
+  pinMode(speakerPin, OUTPUT);
   Blynk.begin(auth,ssid,pass,"blynk.cloud",80);
   Serial.print("blynk connected");
   lcd.begin();
@@ -77,5 +95,5 @@ void setup()
 
 void loop() {
   Blynk.run();
-
+  timer.run();
 }
