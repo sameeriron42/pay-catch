@@ -54,12 +54,13 @@ BLYNK_WRITE(V3)
 {
   amount = param.asFloat();
   amount /=100;
+  lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("AMOUNT:");
   lcd.print(amount);
 
   digitalWrite(speakerPin, HIGH);  // Set pin high
-  timer.setTimeout(500L, speakerOFF);  // Run ActionOFF function in 2.5 seconds
+  timer.setTimeout(500L, speakerOFF);  // turn off speaker in 0.5s
   timer.setTimeout(150000L,resetAmount); //reset amount after 2.5mins
 }
 void speakerOFF(){
@@ -68,6 +69,7 @@ void speakerOFF(){
 }
 void resetAmount(){
   amount =0;
+  lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("AMOUNT:");
   lcd.print(amount);

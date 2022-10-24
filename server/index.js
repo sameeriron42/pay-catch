@@ -9,8 +9,7 @@ const app = express();
 const port = 5000;
 
 const secret = '123'
-const secret1 = '$oyboi123';
-const secret2 = 'wasd4321';
+//Ideally to pull previous trasactions from database
 let prevTrxId = ["pay_KQtKm3kTWcbSuX","pay_KQurBFeMsoNHlC","pay_KRBqnEUvK3Fier"]
 const pinId = 'V3';
 const address = 'https://blr1.blynk.cloud/external/api/update?token=';
@@ -45,6 +44,7 @@ app.post('/api/payment', (req,res) =>
         return;
     }
     
+    prevTrxId.push(paymentId);
     console.log(req.rawBody,typeof(req.rawBody));
     
     const shasum = crypto.createHmac("sha256", secret);
