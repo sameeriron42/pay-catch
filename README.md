@@ -1,6 +1,7 @@
 
 # PAY💵 CATCH🪝
 
+
 Trigger your micro-controllers or smart-devices whenever a payment is made to you. 
 It aims to automate payment sector in a typical byer-seller scenario, so no 
 manual labour is required to verify payments. This can be used in scenarios like:
@@ -14,12 +15,14 @@ manual labour is required to verify payments. This can be used in scenarios like
 ## Payment through QR code💸
 
 #### Making payment through any merchant app of your choice.
-![](https://github.com/sameeriron42/pay-catch/blob/main/demo1.png)
+![demo1](https://github.com/sameeriron42/pay-catch/assets/46097924/599965ed-3713-4ec6-8940-b98313a50201)
+
 #### Payment reflected in Node-MCU.
-![](https://github.com/sameeriron42/pay-catch/blob/main/demo2.png)
+![demo2](https://github.com/sameeriron42/pay-catch/assets/46097924/5e061d27-c283-469a-bc6c-eff1a0e94aa2)
 
 ## Behind the scenes⚙️
-![](https://github.com/sameeriron42/pay-catch/blob/main/system-architechture.gif)
+![system-architechture](https://github.com/sameeriron42/pay-catch/assets/46097924/dcc0bcb2-251f-44eb-9f50-87e70a6c8bd4)
+
 ## Run Locally👩🏻‍💻
 
 Clone the project
